@@ -5,21 +5,30 @@ import { Box, Input, Button, Select } from '@chakra-ui/react'
 
 const TaskForm = () => {
     const { state, dispatch } = useContext(TaskContext)
+
+    const [disabledSelect, setDisabledSelect] = useState(true)
     const navigate = useNavigate()
     const { id } = useParams()
   
     const [task, setTask] = useState({ title: '', status: 'todo', date: '' })
   
+
     useEffect(() => {
       if (id) {
         const existing = state.tasks.find(t => t.id === id)
-        if (existing) setTask(existing)
+        if (existing){
+          setTask(existing)
+          setDisabledSelect(existing.status === 'todo' ? false : true)
+        }else {
+          setDisabledSelect(true) 
+        }
       }
     }, [id, state.tasks])
   
     const handleChange = e => {
       setTask({ ...task, [e.target.name]: e.target.value })
     }
+
   
     const handleSubmit = e => {
       e.preventDefault()
@@ -35,7 +44,7 @@ const TaskForm = () => {
       localStorage.setItem('tasks', JSON.stringify(updatedTasks))
       navigate('/')
     }
-  
+
     return (
       <Box p={4} maxW='md' mx='auto'>
         <form onSubmit={handleSubmit}>
@@ -45,10 +54,10 @@ const TaskForm = () => {
             onChange={handleChange}
             placeholder='Título de la tarea'
             mb={3}
-          />
-          <Select name='status' value={task.status} onChange={handleChange} mb={3}>
+          />  
+          <Select  disabled={disabledSelect} name='status' value={task.status} onChange={handleChange} mb={3}>
             <option value='todo'>Por hacer</option>
-            <option value='in-progress'>En progreso</option>
+            <option   value='in-progress'>En progreso</option>
             <option value='done'>Completada</option>
           </Select>
           <Input

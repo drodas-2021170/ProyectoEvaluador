@@ -10,7 +10,7 @@ const TaskList = () => {
     const [filter, setFilter] = useState('all')
     const navigate = useNavigate()
   
-    // Solo cargar tareas del localStorage si el estado está vacío
+    
     useEffect(() => {
       if (state.tasks.length === 0) {
         const stored = localStorage.getItem('tasks')
@@ -21,7 +21,7 @@ const TaskList = () => {
       }
     }, [dispatch, state.tasks.length])
   
-    // Guardar en localStorage cada vez que cambia el estado
+    
     useEffect(() => {
       localStorage.setItem('tasks', JSON.stringify(state.tasks))
     }, [state.tasks])

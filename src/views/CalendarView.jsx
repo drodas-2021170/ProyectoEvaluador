@@ -13,7 +13,7 @@ const CalendarView = () => {
       if (stored) setTasks(JSON.parse(stored))
     }, [])
   
-    const events = tasks.map(task => ({
+    const events = tasks.filter(task => task.status !== 'done').map(task => ({
       title: task.title,
       date: task.date || new Date().toISOString().slice(0, 10),
     }))

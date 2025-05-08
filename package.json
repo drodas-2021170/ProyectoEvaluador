@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "react-scripts test "
+    "test": "react-scripts test --watchAll=false"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.10.7",

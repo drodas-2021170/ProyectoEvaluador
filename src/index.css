@@ -1,13 +1,10 @@
-
 body {
-  background-color:black; /* verde bosque profundo */
+
+  background-color: black;
   font-family: 'Segoe UI', sans-serif;
-  color: #e6f2ed;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
 }
-
 
 button {
   background-color: #245947;
@@ -25,20 +22,41 @@ button:hover {
   transform: translateY(-2px);
 }
 
-input, select {
-  background-color: #153f33;
-  border: 1px solid #3e7f6b;
-  padding: 0.5rem;
+select {
+  background-color: #f4f4f9; 
+  color: #333; 
+  border: 2px solid #007BFF; 
+  border-radius: 8px; 
+  padding: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease; 
+}
+
+select:hover {
+  background-color: #e2e8f0; 
+  border-color: #0056b3; 
+}
+
+select:focus {
+  outline: none; 
+  border-color: #0069d9; 
+  background-color: #e2e8f0; 
+}
+
+input{
+  color: #333; 
+  border: 2px solid #4f6d7a; 
   border-radius: 8px;
-  color: #e5faf2;
-  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-input:focus, select:focus {
-  outline: 2px solid #64e4c2;
-  background-color: #1e5544;
+input:focus {
+  outline: none; 
+  border-color: #0069d9; 
+  background-color: #e2e8f0; 
 }
-
 .box-shadowed {
   box-shadow: 0 4px 14px rgba(0,0,0,0.4);
   border-radius: 12px;
@@ -59,3 +77,4 @@ h1, h2, h3, h4 {
   background-color: #3e7f6b;
   color: #ffffff;
 }
+

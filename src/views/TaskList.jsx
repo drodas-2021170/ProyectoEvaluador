@@ -1,0 +1,56 @@
+import { useContext, useEffect, useState,useRef } from 'react'
+import { TaskContext } from '../context/TaskContext'
+import { Box, Heading, Button, VStack,HStack } from '@chakra-ui/react'
+import { Link, useNavigate } from 'react-router-dom'
+import TaskItem from '../components/TaskItem'
+import FilterBar from '../components/FilterBar'
+
+const TaskList = () => {
+    const { state, dispatch } = useContext(TaskContext)
+    const [filter, setFilter] = useState('all')
+    const navigate = useNavigate()
+  
+    // Solo cargar tareas del localStorage si el estado está vacío
+    useEffect(() => {
+      if (state.tasks.length === 0) {
+        const stored = localStorage.getItem('tasks')
+        if (stored) {
+          const parsed = JSON.parse(stored)
+          dispatch({ type: 'LOAD_TASKS', payload: parsed })
+        }
+      }
+    }, [dispatch, state.tasks.length])
+  
+    // Guardar en localStorage cada vez que cambia el estado
+    useEffect(() => {
+      localStorage.setItem('tasks', JSON.stringify(state.tasks))
+    }, [state.tasks])
+  
+    const filteredTasks = state.tasks.filter(task =>
+      filter === 'all' ? true : task.status === filter
+    )
+  
+    const clearAll = () => {
+      localStorage.removeItem('tasks')
+      window.location.reload()
+    }
+  
+    return (
+      <Box p={4} maxW='xl' mx='auto'>
+        <Heading mb={4}>Tareas</Heading>
+        <HStack spacing={4} mb={3}>
+          <Button onClick={() => navigate('/task')}>Nueva Tarea</Button>
+          <Button colorScheme='red' onClick={clearAll}>Eliminar todas</Button>
+          <Link to='/calendar'><Button colorScheme='green'>Calendario</Button></Link>
+        </HStack>
+        <FilterBar filter={filter} setFilter={setFilter} />
+        <VStack>
+          {filteredTasks.map(task => (
+            <TaskItem key={task.id} task={task} />
+          ))}
+        </VStack>
+      </Box>
+    )
+  }
+
+  export default TaskList

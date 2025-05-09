@@ -5,7 +5,6 @@ import { Box, Input, Button, Select } from '@chakra-ui/react'
 
 const TaskForm = () => {
     const { state, dispatch } = useContext(TaskContext)
-
     const [disabledSelect, setDisabledSelect] = useState(true)
     const navigate = useNavigate()
     const { id } = useParams()

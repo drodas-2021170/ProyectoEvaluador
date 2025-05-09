@@ -10,7 +10,6 @@ const TaskList = () => {
     const [filter, setFilter] = useState('all')
     const navigate = useNavigate()
   
-    
     useEffect(() => {
       if (state.tasks.length === 0) {
         const stored = localStorage.getItem('tasks')

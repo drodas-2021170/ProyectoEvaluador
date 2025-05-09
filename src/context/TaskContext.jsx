@@ -11,7 +11,7 @@ const TaskProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(taskReducer, initialState)
 
-  // Guardar en localStorage cada vez que cambia el estado global
+
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(state.tasks))
   }, [state.tasks])

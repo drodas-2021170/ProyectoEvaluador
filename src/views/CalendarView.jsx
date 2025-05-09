@@ -2,7 +2,6 @@ import { Box, Button, Heading } from '@chakra-ui/react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import { useContext, useEffect, useState } from 'react'
-import { TaskContext } from '../context/TaskContext'
 import { Link } from 'react-router-dom'
 
 const CalendarView = () => {

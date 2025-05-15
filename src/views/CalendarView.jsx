@@ -1,8 +1,9 @@
 import { Box, Button, Heading } from '@chakra-ui/react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Navbar } from '../components/Navbar'
 
 const CalendarView = () => {
     const [tasks, setTasks] = useState([])
@@ -19,7 +20,7 @@ const CalendarView = () => {
   
     return (
       <Box p={4} maxW='4xl' mx='auto'>
-        <Link to='/'><Button colorScheme='green'>Task List</Button></Link>
+        <Navbar/>
         <Heading mb={4}>Vista de Calendario</Heading>
         <FullCalendar plugins={[dayGridPlugin]} initialView='dayGridMonth' events={events} />
       

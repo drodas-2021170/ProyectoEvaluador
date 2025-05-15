@@ -4,6 +4,7 @@ import { Box, Heading, Button, VStack,HStack } from '@chakra-ui/react'
 import { Link, useNavigate } from 'react-router-dom'
 import TaskItem from '../components/TaskItem'
 import FilterBar from '../components/FilterBar'
+import { Navbar } from '../components/Navbar'
 
 const TaskList = () => {
     const { state, dispatch } = useContext(TaskContext)
@@ -35,12 +36,14 @@ const TaskList = () => {
     }
   
     return (
+
       <Box p={4} maxW='xl' mx='auto'>
+        <Navbar/>
+
         <Heading mb={4}>Tareas</Heading>
         <HStack spacing={4} mb={3}>
           <Button onClick={() => navigate('/task')}>Nueva Tarea</Button>
           <Button colorScheme='red' onClick={clearAll}>Eliminar todas</Button>
-          <Link to='/calendar'><Button colorScheme='green'>Calendario</Button></Link>
         </HStack>
         <FilterBar filter={filter} setFilter={setFilter} />
         <VStack>
